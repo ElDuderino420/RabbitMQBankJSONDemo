@@ -10,7 +10,7 @@ import com.rabbitmq.client.ConnectionFactory;
  */
 public class Send {
 
-    private static final String QUEUE_NAME = "rh11_test01";
+    private static final String EXCHANGE_NAME = "cphbusiness.bankJSON";
 
     /**
      * @param args the command line arguments
@@ -25,12 +25,11 @@ public class Send {
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
         
-        channel.exchangeDeclare("cphbusiness.bankJSON", "fanout");
+        channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
         
-        //channel.queueDeclare(QUEUE_NAME, false, false, false, null);
         String json = "{\"ssn\":1605789787,\"creditScore\":598,\"loanAmount\":10.0,\"loanDuration\":360}";
         
-        channel.basicPublish("cphbusiness.bankJSON", "", null, json.getBytes());
+        channel.basicPublish(EXCHANGE_NAME, "", null, json.getBytes());
         System.out.println("Sent...... " + json);
         
         channel.close();
