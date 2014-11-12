@@ -5,7 +5,6 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.QueueingConsumer;
-import java.util.Map;
 
 /**
  *
@@ -13,21 +12,21 @@ import java.util.Map;
  */
 public class Receive {
 
-    private static final String EXCHANGE_NAME = "cphbusiness.bankJSON";
+
 
     public static void main(String[] args) throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("datdb.cphbusiness.dk");
-        factory.setPort(5672);
-        factory.setUsername("student");
-        factory.setPassword("cph");
+        factory.setHost(Constants.CONNECTION_HOST);
+        factory.setPort(Constants.CONNECTION_PORT);
+        factory.setUsername(Constants.CONNECTION_USERNAME);
+        factory.setPassword(Constants.CONNECTION_PASSWORD);
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
         
-        channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
+        channel.exchangeDeclare(Constants.EXCHANGE_NAME, "fanout");
         
         String queueName = channel.queueDeclare().getQueue();
-        channel.queueBind(queueName, EXCHANGE_NAME, "");
+        channel.queueBind(queueName, Constants.EXCHANGE_NAME, "");
         
         System.out.println(".... Waiting for response ....");
 
