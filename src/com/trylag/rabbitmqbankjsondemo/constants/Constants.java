@@ -1,8 +1,8 @@
-package rabbitmqbankjsondemo;
+package com.trylag.rabbitmqbankjsondemo.constants;
 
 /**
  *
- * @author Rick
+ * @author Richard Haley III
  */
 public interface Constants {
 

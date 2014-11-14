@@ -1,4 +1,4 @@
-package rabbitmqbankjsondemo;
+package com.trylag.rabbitmqbankjsondemo.client;
 
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
@@ -7,7 +7,7 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.QueueingConsumer;
 import java.util.UUID;
 
-import static rabbitmqbankjsondemo.Constants.*;
+import static com.trylag.rabbitmqbankjsondemo.constants.Constants.*;
 
 /**
  *
